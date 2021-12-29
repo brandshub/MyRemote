@@ -1,0 +1,93 @@
+﻿{
+  "Server": {
+    "IPAddress": "192.168.0.101",
+    "Port": 5006,
+    "Secret": "1234"
+  },
+  "Menus": [],
+  "Forms": [
+    {
+      "$type": "MyRemote.Lib.Menu.Forms.KeyboardForm, MyRemote.Lib",
+
+      "Id": "testK",
+      "Title": "Test Keyboard",
+      "Buttons": [
+        [
+          {
+            "k": "Win+D",
+            "t": "Minimize Windows",
+            "w": 5,
+            "h": "1"
+          },
+          {
+            "k": "Win+3",
+            "t": "Source Tree",
+            "w": 4,
+            "h": "1"
+          }
+        ],
+        [
+          {
+            "k": "Win+E",
+            "t": "Explorer",
+            "w": 5,
+            "h": "1"
+          },
+          {
+            "k": "Win+3",
+            "t": "Chrome",
+            "w": 3,
+            "h": "1"
+          }
+        ]
+      ]
+    }
+  ],
+  "Requests": [
+    {
+      "Id": "lf_Torrents",
+      "Title": "List Torrents",
+      "ActionId": "LIST_TORRENTS"
+    },
+    {
+      "Id": "kb_alttab",
+      "Title": "Alt Tab",
+      "ActionId": "ALTAB"
+    },
+    {
+      "Id": "p_google",
+      "Title": "Start Google",
+      "ActionId": "GGGLE"
+    }
+
+  ],
+  "CommandActions": [
+    {
+      "$type": "MyRemote.Lib.Action.ListFilesAction, MyRemote.Lib",
+
+      "Id": "LIST_TORRENTS",
+      "Title": "List Torrents",
+      "Parameters": {
+        "path": "D:\\Torrents"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "GGGLE",
+      "Title": "OpenGoogle",
+      "Parameters": {
+        "command": "https://google.com.ua"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.KeyboardAction, MyRemote.Lib",
+
+      "Id": "ALTAB",
+      "Title": "Alt+Tab",
+      "Parameters": {
+        "input": "Alt+Tab"
+      }
+    }
+  ]
+}

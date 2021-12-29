@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:MyRemote.AndroidClient.Views"
+       xmlns:z="clr-namespace:MyRemote.AndroidClient"
+       x:Class="MyRemote.AndroidClient.AppShell">
+    <TabBar>
+        <Tab Title="Main">
+            <ShellContent ContentTemplate="{DataTemplate z:MainPage}" />
+        </Tab>
+        <Tab Title="Menus">
+            <ShellContent ContentTemplate="{DataTemplate views:MenuListView}" />
+        </Tab>
+        <Tab Title="Servers">
+            <ShellContent ContentTemplate="{DataTemplate views:ServersListView}" />
+        </Tab>        
+    </TabBar>
+</Shell>

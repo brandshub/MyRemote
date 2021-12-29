@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyRemote.AndroidClient.Views.ServerView"
+             Title="Server Info"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="3" Padding="15" VerticalOptions="StartAndExpand">
+                <Label Text="Title" FontSize="Medium" />
+                <Entry Text="{Binding Title, Mode=TwoWay}" FontSize="Medium"/>
+                <Label Text="IP" FontSize="Medium" />
+                <Entry Text="{Binding IpAddress, Mode=TwoWay}" FontSize="Medium" />
+                <Label Text="Port" FontSize="Medium" />
+                <Entry Text="{Binding Port, Mode=TwoWay}" Keyboard="Numeric" FontSize="Medium" />
+                <Label Text="Secret" FontSize="Medium" />
+                <Entry IsPassword="True" Text="{Binding Secret, Mode=TwoWay}" FontSize="Medium" />
+                <Label Text="IsSelected" FontSize="Medium"/>
+                <CheckBox IsChecked="{Binding Selected, Mode=TwoWay}"></CheckBox>                
+            </StackLayout>            
+            <StackLayout Orientation="Horizontal" VerticalOptions="End" Padding="15">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="Coral" VerticalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="LightGreen" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
