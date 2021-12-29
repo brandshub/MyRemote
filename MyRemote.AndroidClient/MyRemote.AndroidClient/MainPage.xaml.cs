@@ -16,6 +16,7 @@ using Xamarin.Forms;
 using MyRemote.Lib.Server;
 using MyRemote.Lib.Action;
 using MyRemote.Lib.Model;
+using MyRemote.Lib.Menu.Forms;
 
 namespace MyRemote.AndroidClient
 {
@@ -76,6 +77,16 @@ namespace MyRemote.AndroidClient
             };
 
             await Application.Current.MainPage.Navigation.PushAsync(view);
+        }
+
+        private async void btnKeyboard_Clicked(object sender, EventArgs e)
+        {
+            var form = Globals.CurrentConfig.Forms.FirstOrDefault(k => k.Id == "testK") as KeyboardForm;
+            if (form != null)
+            {
+                var view = new KeyboardView(form);
+                await Application.Current.MainPage.Navigation.PushAsync(view);
+            }
         }
     }
 }

@@ -22,11 +22,13 @@ namespace MyRemote.Lib.Action
         public const string INPUT = "input";
 
         public override string Code => CODE;
+
         public KeyboardAction(Dictionary<string, string> parameters) : base(parameters)
         {
 
         }
 
+      
 
         public override CommandResponse Execute()
         {
@@ -111,18 +113,26 @@ namespace MyRemote.Lib.Action
 
         static KeyboardAction()
         {
-          /*  var keyNames = Enum.GetNames(typeof(System.Windows.Forms.Keys));
-            var keyValues = Enum.GetValues(typeof(System.Windows.Forms.Keys)).Cast<int>().ToArray();
+            /*  var keyNames = Enum.GetNames(typeof(System.Windows.Forms.Keys));
+              var keyValues = Enum.GetValues(typeof(System.Windows.Forms.Keys)).Cast<int>().ToArray();
 
-            vkMap = new Dictionary<string, VirtualKeyCode>(keyNames.Length - 4);
-            for (int i = 0; i < keyNames.Length - 4; i++)
-            {
-                vkMap.Add(keyNames[i].ToUpper(), (VirtualKeyCode)(keyValues[i]));
-            }
+              vkMap = new Dictionary<string, VirtualKeyCode>(keyNames.Length - 4);
+              for (int i = 0; i < keyNames.Length - 4; i++)
+              {
+                  vkMap.Add(keyNames[i].ToUpper(), (VirtualKeyCode)(keyValues[i]));
+              }
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(vkMap);*/
+              string json = Newtonsoft.Json.JsonConvert.SerializeObject(vkMap);*/
         }
 
-
+        public static CommandRequest KeyStrokeRequest(string input)
+        {
+            return new CommandRequest
+            {
+                Id = "GENERIC_AUTO_" + CODE,
+                ActionId = CODE,
+                Parameters = new Dictionary<string, string> { { INPUT, input } }
+            };
+        }
     }
 }

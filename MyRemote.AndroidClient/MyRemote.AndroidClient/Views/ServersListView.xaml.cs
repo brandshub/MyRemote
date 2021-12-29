@@ -62,11 +62,13 @@ namespace MyRemote.AndroidClient.Views
                 return;
 
             var selected = e.Item as ServerCredentialsViewModel;
-            selected.Selected = !selected.Selected;
+            var flag = selected.Selected;
+
+            selected.Selected = !flag;
             if (selected.Selected)
             {
                 foreach (var item in Items)
-                    if (item.Selected)
+                    if (item != selected && item.Selected)
                         item.Selected = false;
             }
 

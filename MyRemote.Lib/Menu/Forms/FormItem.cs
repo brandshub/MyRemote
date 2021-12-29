@@ -13,6 +13,8 @@ namespace MyRemote.Lib.Menu.Forms
 
         [JsonProperty("t")]
         public string Text { get; set; }
+
+        [JsonProperty("c")]
         public string ColorHex { get; set; }
 
         public int RowIndex { get; set; }

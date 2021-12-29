@@ -4,39 +4,40 @@
              Title="Saved Servers"
              x:Class="MyRemote.AndroidClient.Views.ServersListView">
     <ContentPage.Content>
-        <AbsoluteLayout>
-        <ListView x:Name="MyListView"            
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="MyListView"            
             ItemTapped="Handle_ItemTapped"                   
             ItemsSource="{Binding Items}"
             AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"                  
             AbsoluteLayout.LayoutFlags="WidthProportional"                  
             CachingStrategy="RecycleElement">
-            <!--Built in Cells-->
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems
+                    <!--Built in Cells-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <SwipeView>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems
                                  Mode="Reveal"                                      
-                                SwipeBehaviorOnInvoked="Close">                                    
-                                    <SwipeItem
+                                SwipeBehaviorOnInvoked="Close">
+                                            <SwipeItem
                                       Text="Edit"
                                       BackgroundColor="LightCyan"                                                                      
                                       Command="{Binding EditCommand}"
                                       />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>                           
-                            <StackLayout Orientation="Horizontal" BackgroundColor="{Binding MainColor}" Padding="15,0,20,0">
-                                <Label  Text="{Binding Title}"  FontSize="22"  HorizontalOptions="Start"  VerticalOptions="Center" FontAttributes="{Binding SelectedFontAttr}"/>
-                                    <Label  Text="{Binding Display}" FontSize="18" HorizontalOptions="EndAndExpand"  VerticalOptions="Center"   FontAttributes="{Binding SelectedFontAttr}"/>
-                            </StackLayout>
-                        </SwipeView>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>        
-        <ImageButton
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <StackLayout Orientation="Horizontal" BackgroundColor="{Binding MainColor}" Padding="15,0,20,0">
+                                        <Label  Text="{Binding Title}"  FontSize="22"  HorizontalOptions="Start"  VerticalOptions="Center" FontAttributes="{Binding SelectedFontAttr}"/>
+                                        <Label  Text="{Binding Display}" FontSize="18" HorizontalOptions="EndAndExpand"  VerticalOptions="Center"   FontAttributes="{Binding SelectedFontAttr}"/>
+                                    </StackLayout>
+                                </SwipeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ImageButton
             AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
             Padding="12"
             AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -47,6 +48,7 @@
             WidthRequest="20" 
             Clicked="ImageButton_Clicked"
         />
-    </AbsoluteLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

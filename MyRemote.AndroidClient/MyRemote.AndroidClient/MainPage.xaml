@@ -2,31 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyRemote.AndroidClient.MainPage">
+    <ScrollView>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="Welcome to Xamarin.Fo1rm123s!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+            <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+            <Entry x:Name="input1" Placeholder="Url"/>
+            <Button x:Name="btnClick" Text="Get Config" Clicked="btnClick_Clicked"/>
+            <Button x:Name="btnServers" Text="List servers" Clicked="btnServers_Clicked"/>
+            <Button x:Name="btnTorrents" Text="View Torrents" Clicked="btnTorrents_Clicked"/>
+            <Button x:Name="btnKeyboard" Text="Keyboard" Clicked="btnKeyboard_Clicked"/>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Fo1rm123s!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Entry x:Name="input1" Placeholder="Url"/>
-        <Button x:Name="btnClick" Text="TCP Send" Clicked="btnClick_Clicked"/>
-        <Button x:Name="btnServers" Text="List servers" Clicked="btnServers_Clicked"/>
-        <Button x:Name="btnTorrents" Text="View Torrents" Clicked="btnTorrents_Clicked"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>                        
-                       
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <StackLayout x:Name="mainMenu">            
+            <Label FontSize="16" Padding="30,24,30,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Learn more at "/>
+                            <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <StackLayout x:Name="mainMenu">
+            </StackLayout>
+            <Label x:Name="result"/>
         </StackLayout>
-        <Label x:Name="result"/>
-    </StackLayout>
-
+    </ScrollView>
 </ContentPage>
