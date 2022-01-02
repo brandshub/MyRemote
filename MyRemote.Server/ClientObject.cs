@@ -27,12 +27,14 @@ namespace MyRemote.Server
             try
             {
                 stream = client.GetStream();
-                CommandResponse response;
+                CommandResponse response = null;
 
                 BinaryReader reader = new BinaryReader(stream);
                 var reqJson = reader.ReadString();
 
-              
+                bool error = false;
+
+
                 CommandRequest request = JsonConvert.DeserializeObject<CommandRequest>(reqJson);
                 if (request.ActionId == "GET_CONFIG")
                 {
@@ -52,15 +54,23 @@ namespace MyRemote.Server
                 else
                 {
                     var action = CommandActionFactory.FromRequest(request, Common.CurrentConfig);
-                    response = action.Execute();
+                    try
+                    {
+                        response = action.Execute();
+                    }
+                    catch (Exception exz)
+                    {
+                        response = new CommandResponse { StatusCode = -200, Payload = new Dictionary<string, string> { { "err", exz.Message } } };
+                    }
                 }
+
 
                 var respJson = JsonConvert.SerializeObject(response);
 
                 BinaryWriter bw = new BinaryWriter(stream);
                 bw.Write(respJson);
                 bw.Flush();
-                
+
 
                 /*
                 var formatter = new BinaryFormatter();

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyRemote.Lib.Server
@@ -38,6 +39,7 @@ namespace MyRemote.Lib.Server
         public static Config GetConfig(string ipAddress, int port, string secret)
         {
             var client = new TcpClient(ipAddress, port);
+
             NetworkStream stream = client.GetStream();
 
             BinaryWriter writer = new BinaryWriter(stream);
@@ -65,6 +67,54 @@ namespace MyRemote.Lib.Server
             client.Close();
 
             return config;
+        }
+
+        public static async Task<Config> GetConfigAsync(string ipAddress, int port, string secret)
+        {
+            var timeOut = TimeSpan.FromSeconds(5);
+            var cancellationCompletionSource = new TaskCompletionSource<bool>();
+
+            using (var cts = new CancellationTokenSource(timeOut))
+            {
+                using (var client = new TcpClient())
+                {
+                    var task = client.ConnectAsync(ipAddress, port);
+
+                    using (cts.Token.Register(() => cancellationCompletionSource.TrySetResult(true)))
+                    {
+                        if (task != await Task.WhenAny(task, cancellationCompletionSource.Task))
+                        {
+                            throw new OperationCanceledException("TCP Connection timed out!", cts.Token);
+                        }
+                    }
+
+                    if (!client.Connected)
+                        throw new OperationCanceledException("TCP Connection failed!");
+
+                    NetworkStream stream = client.GetStream();
+
+                    BinaryWriter writer = new BinaryWriter(stream);
+
+                    var req = new CommandRequest();
+                    req.ActionId = "GET_CONFIG";
+                    req["secret"] = secret;
+
+                    var json = JsonConvert.SerializeObject(req);
+                    writer.Write(json);
+                    writer.Flush();
+
+                    BinaryReader reader = new BinaryReader(stream);
+                    var str = reader.ReadString();
+
+                    // var resp = (CommandResponse)formatter.Deserialize(stream);
+                    var resp = JsonConvert.DeserializeObject<CommandResponse>(str);
+
+
+                    var config = Config.FromString(resp.Payload["config"]);
+                    return config;
+
+                }
+            }
         }
     }
 }

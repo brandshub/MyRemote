@@ -115,31 +115,39 @@ namespace MyRemote.WinClient
             });
         }
 
-        private void btnGetConfig_Click(object sender, EventArgs e)
+        private async void btnGetConfig_Click(object sender, EventArgs e)
         {
-            Task.Run(() =>
+            try
             {
 
-                var config = Server.GetConfig("192.168.0.1", 5006, "1234");
-                /*
-                var client = new TcpClient("192.168.0.101", 5006);
-                NetworkStream stream = client.GetStream();
+                var conf = await Server.GetConfigAsync("192.168.0.06", 5006, "111");
+            }
+            catch (OperationCanceledException ex2)
+            {
+                MessageBox.Show(ex2.Message);
 
-                var req = new CommandRequest();
-                req.ActionId = "GET_CONFIG";
-                req["secret"] = textBox1.Text;
+            }
 
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, req);
+            /*
+            var client = new TcpClient("192.168.0.101", 5006);
+            NetworkStream stream = client.GetStream();
 
-                //                BinaryReader reader = new BinaryReader(stream);
-                var resp = (CommandResponse)formatter.Deserialize(stream);
+            var req = new CommandRequest();
+            req.ActionId = "GET_CONFIG";
+            req["secret"] = textBox1.Text;
+
+            var formatter = new BinaryFormatter();
+            formatter.Serialize(stream, req);
+
+            //                BinaryReader reader = new BinaryReader(stream);
+            var resp = (CommandResponse)formatter.Deserialize(stream);
 
 
-                //              reader.Close();
-                //            writer.Close();
-                client.Close();*/
-            });
+
+            //              reader.Close();
+            //            writer.Close();
+            client.Close();*/
+
         }
     }
 }

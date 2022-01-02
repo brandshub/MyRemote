@@ -133,6 +133,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MyRemote.Lib\MyRemote.Lib.csproj">
+      <Project>{7E5E513E-A35E-4A67-A5A2-A70BD61D4910}</Project>
+      <Name>MyRemote.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyRemote.AndroidClient\MyRemote.AndroidClient.csproj">
       <Project>{56AACCD7-4908-4AA3-862F-08B8AC44C9DF}</Project>
       <Name>MyRemote.AndroidClient</Name>

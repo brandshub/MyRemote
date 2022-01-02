@@ -39,12 +39,22 @@ namespace MyRemote.AndroidClient
             }
             else
             {
-                await Task.Run(() =>
+
+                try
                 {
-                    Globals.CurrentConfig = Server.GetConfig(server.IpAddress, server.Port, server.Secret);
+                    Globals.CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
                     Globals.CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
-                });
-                await DisplayAlert("Success", "Config loaded!", "OK");
+
+                    await DisplayAlert("Success", "Config loaded!", "OK");
+                }
+                catch (OperationCanceledException ex)
+                {
+                    await DisplayAlert("Failure", ex.CancellationToken == null ? "TCP connection failed" : "TCP connection timed out", "OK");
+                }
+                catch 
+                {
+                    await DisplayAlert("Failure", "Unspecified error occured", "OK");
+                }
             }
         }
 
