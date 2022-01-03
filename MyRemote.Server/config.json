@@ -1,8 +1,8 @@
 ﻿{
   "Server": {
-    "IPAddress": "192.168.0.101",
+    "IPAddress": "192.168.0.106",
     "Port": 5006,
-    "Secret": "1234"
+    "Secret": "111"
   },
   "Menus": [],
   "Forms": [

@@ -1,11 +1,13 @@
 ﻿using MyRemote.Lib.Action;
 using MyRemote.Lib.Command;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -15,6 +17,8 @@ namespace MyRemote.Server
 {
     public class ClientObject
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         public TcpClient client;
         public ClientObject(TcpClient tcpClient)
         {
@@ -32,12 +36,14 @@ namespace MyRemote.Server
                 BinaryReader reader = new BinaryReader(stream);
                 var reqJson = reader.ReadString();
 
-                bool error = false;
+          
 
 
                 CommandRequest request = JsonConvert.DeserializeObject<CommandRequest>(reqJson);
                 if (request.ActionId == "GET_CONFIG")
                 {
+                    logger.Info($"Config request from {((IPEndPoint)client.Client.RemoteEndPoint).Address}");
+
                     if (request.Parameters["secret"] == Common.CurrentConfig.Server.Secret)
                     {
                         string currentConfigJson = Common.CurrentConfig.ToJson();
@@ -54,6 +60,7 @@ namespace MyRemote.Server
                 else
                 {
                     var action = CommandActionFactory.FromRequest(request, Common.CurrentConfig);
+                    logger.Info($"{action.Id} request from {((IPEndPoint)client.Client.RemoteEndPoint).Address}");
                     try
                     {
                         response = action.Execute();

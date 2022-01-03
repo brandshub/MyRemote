@@ -1,4 +1,5 @@
 ﻿using MyRemote.Lib;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,14 @@ using System.Windows.Forms;
 
 namespace MyRemote.Server
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        private static ILogger logger;
+
+        public MainForm()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            button1_Click(null, EventArgs.Empty);
-
         }
 
         
@@ -36,7 +37,8 @@ namespace MyRemote.Server
                 cfg.Server.IpAddress = ipAddress.ToString();                
             }
 
-            textBox1.AppendText("starting\r\n");
+            logger.Info("Starting server");
+
             Task.Run(() =>
             {
                 try
@@ -49,8 +51,7 @@ namespace MyRemote.Server
                     {
                         TcpClient client = listener.AcceptTcpClient();
                         ClientObject clientObject = new ClientObject(client);
-
-                        textBox1.AppendText("incoming\r\n");
+                     
                         Task clientTask = new Task(clientObject.Process);
                         clientTask.Start();
                     }
@@ -65,6 +66,14 @@ namespace MyRemote.Server
                         listener.Stop();
                 }
             });
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (logger == null) 
+                logger = LogManager.GetCurrentClassLogger();
+
+            button1_Click(null, EventArgs.Empty);
         }
     }
 }
