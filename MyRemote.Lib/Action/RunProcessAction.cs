@@ -11,6 +11,8 @@ namespace MyRemote.Lib.Action
     public class RunProcessAction : CommandAction
     {
         public const string COMMAND = "command";
+        public const string ARGS = "args";
+
         public const string CODE = "RUN";
 
 
@@ -22,18 +24,21 @@ namespace MyRemote.Lib.Action
 
         public override CommandResponse Execute()
         {
-            Process.Start(this[COMMAND]);
+            string process = this[COMMAND];
+            string args = this[ARGS];
+
+            Process.Start(process, args);
 
             return new CommandResponse();
         }
 
-        public static CommandRequest GenericRequest(string command)
+        public static CommandRequest GenericRequest(string command, string args = null)
         {
             return new CommandRequest
             {
-                Id = "GENERIC_AUTO_"+CODE,
+                Id = "GENERIC_AUTO_" + CODE,
                 ActionId = CODE,
-                Parameters = new Dictionary<string, string> { { COMMAND, command } }
+                Parameters = new Dictionary<string, string> { { COMMAND, command }, { ARGS, args } }
             };
         }
     }

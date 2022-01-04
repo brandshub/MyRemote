@@ -3,10 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyRemote.AndroidClient.Views.MenuListView">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="MyListView" 
+            ItemsSource="{Binding Items}"                  
+            CachingStrategy="RecycleElement">
+                <!--Built in Cells-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                           <Button Text="{Binding Title}" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand"/>                                  
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>            
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

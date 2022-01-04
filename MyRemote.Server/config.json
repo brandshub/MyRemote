@@ -7,6 +7,20 @@
   "Menus": [],
   "Forms": [
     {
+      "Id": "Shutdown",
+      "Title": "Shutdown",
+      "Controls": [
+        {
+          "RequestId": "sd_90",
+          "t": "Power Off 90s"
+        },
+        {
+          "RequestId": "sda",
+          "t": "Abort Power Off"
+        }
+      ]
+    },
+    {
       "$type": "MyRemote.Lib.Menu.Forms.KeyboardForm, MyRemote.Lib",
 
       "Id": "testK",
@@ -16,29 +30,98 @@
           {
             "k": "Win+D",
             "t": "Minimize Windows",
-            "w": 5,
-            "h": "1"
+            "w": 5
+
           },
           {
             "k": "Win+3",
             "t": "Source Tree",
-            "w": 4,
-            "h": "1"
+            "w": 4
           }
         ],
         [
           {
             "k": "Win+E",
             "t": "Explorer",
-            "w": 5,
-            "h": "1"
+            "w": 5
+
           },
           {
             "k": "Win+3",
             "t": "Chrome",
-            "w": 3,
-            "h": "1"
+            "w": 3
+
           }
+        ]
+      ]
+    },
+    {
+      "$type": "MyRemote.Lib.Menu.Forms.KeyboardForm, MyRemote.Lib",
+
+      "Id": "ytK",
+      "Title": "YouTube Keyboard",
+      "Buttons": [
+        [
+          {
+            "k": "Shift+P",
+            "t": "Back"
+          },
+          {
+            "k": "k",
+            "t": "Play",
+            "w": 3
+          },
+          {
+            "k": "Shift+N",
+            "t": "Next"
+          },
+          {
+            "k": "M",
+            "t": "Mute"
+          },
+          {
+            "k": "Shift+,",
+            "t": "Speed-"
+          },
+          {
+            "k": "Shift+.",
+            "t": "Speed+"
+          }
+        ],
+        [
+          {
+            "k": "J",
+            "t": "<<"
+          },
+
+          {
+            "k": "Left",
+            "t": "<"
+          },
+          {
+            "k": "Right",
+            "t": ">"
+          },
+          {
+            "k": "L",
+            "t": ">>"
+          },
+          {
+            "k": "Up",
+            "t": "Vol+"
+          },
+          {
+            "k": "Down",
+            "t": "Vol-"
+          }
+        ],
+        [
+          {
+            "k": "F",
+            "t": "Toggle Fullscreen",
+            "w": 8
+          }
+
         ]
       ]
     }
@@ -78,6 +161,26 @@
       "Title": "OpenGoogle",
       "Parameters": {
         "command": "https://google.com.ua"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "sd_90",
+      "Title": "Shutdown90",
+      "Parameters": {
+        "command": "c:\\windows\\system32\\shutdown.exe",
+        "args": "/s /t 90"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "sda",
+      "Title": "ShutdownAbort",
+      "Parameters": {
+        "command": "c:\\windows\\system32\\shutdown.exe",
+        "args": "/a"
       }
     },
     {

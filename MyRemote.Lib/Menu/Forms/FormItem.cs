@@ -21,9 +21,10 @@ namespace MyRemote.Lib.Menu.Forms
         public int ColumnIndex { get; set; }
 
         [JsonProperty("w")]
-        public int Width { get; set; }
+        public int Width { get; set; } = 1;
+
         [JsonProperty("h")]
-        public int Height { get; set; }
+        public int Height { get; set; } = 1;
 
         public string RequestId { get; set; }
 

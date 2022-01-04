@@ -17,6 +17,7 @@ using MyRemote.Lib.Server;
 using MyRemote.Lib.Action;
 using MyRemote.Lib.Model;
 using MyRemote.Lib.Menu.Forms;
+using MyRemote.AndroidClient.Interfaces;
 
 namespace MyRemote.AndroidClient
 {
@@ -44,14 +45,16 @@ namespace MyRemote.AndroidClient
                 {
                     Globals.CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
                     Globals.CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
+                    // Toast.MakeText(.MakeText(this, "Config loaded sucessfully", ToastLength.Short).Show();
+                    //  await DisplayAlert("Success", "Config loaded!", "OK");
 
-                    await DisplayAlert("Success", "Config loaded!", "OK");
+                    DependencyService.Get<IMessage>().LongAlert("Config loaded sucessfully");
                 }
                 catch (OperationCanceledException ex)
                 {
                     await DisplayAlert("Failure", ex.CancellationToken == null ? "TCP connection failed" : "TCP connection timed out", "OK");
                 }
-                catch 
+                catch
                 {
                     await DisplayAlert("Failure", "Unspecified error occured", "OK");
                 }
@@ -91,7 +94,7 @@ namespace MyRemote.AndroidClient
 
         private async void btnKeyboard_Clicked(object sender, EventArgs e)
         {
-            var form = Globals.CurrentConfig.Forms.FirstOrDefault(k => k.Id == "testK") as KeyboardForm;
+            var form = Globals.CurrentConfig.Forms.FirstOrDefault(k => k.Id == "ytK") as KeyboardForm;
             if (form != null)
             {
                 var view = new KeyboardView(form);

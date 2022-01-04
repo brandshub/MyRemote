@@ -36,6 +36,48 @@ namespace MyRemote.Lib.Server
             return resp;
         }
 
+
+        public static async Task<CommandResponse> SendRequestAsync(Config config, CommandRequest request)
+        {
+            var timeOut = TimeSpan.FromSeconds(5);
+            var cancellationCompletionSource = new TaskCompletionSource<bool>();
+
+            using (var cts = new CancellationTokenSource(timeOut))
+            {
+                using (var client = new TcpClient())
+                {
+                    var task = client.ConnectAsync(config.Server.IpAddress, config.Server.Port);
+
+                    using (cts.Token.Register(() => cancellationCompletionSource.TrySetResult(true)))
+                    {
+                        if (task != await Task.WhenAny(task, cancellationCompletionSource.Task))
+                        {
+                            throw new OperationCanceledException("TCP Connection timed out!", cts.Token);
+                        }
+                    }
+
+                    if (!client.Connected)
+                        throw new OperationCanceledException("TCP Connection failed!");
+
+                    NetworkStream stream = client.GetStream();
+                    BinaryWriter writer = new BinaryWriter(stream);
+                   
+                    var json = JsonConvert.SerializeObject(request);
+                    writer.Write(json);
+                    writer.Flush();
+
+                    BinaryReader reader = new BinaryReader(stream);
+                    var str = reader.ReadString();
+
+                    // var resp = (CommandResponse)formatter.Deserialize(stream);
+                    var resp = JsonConvert.DeserializeObject<CommandResponse>(str);
+                    return resp;
+
+                }
+            }
+
+        }
+
         public static Config GetConfig(string ipAddress, int port, string secret)
         {
             var client = new TcpClient(ipAddress, port);

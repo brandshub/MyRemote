@@ -22,7 +22,9 @@ namespace MyRemote.AndroidClient.Views
         {
             InitializeComponent();
             Item = item;
-            BindingContext = Item;            
+            BindingContext = Item;
+
+            Title = "Server Info";
         }
     }
 }

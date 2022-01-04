@@ -1,4 +1,5 @@
 ﻿using MyRemote.Lib;
+using MyRemote.Lib.Action;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace MyRemote.AndroidClient.Business
 
         public static Config CurrentConfig { get; set; }
 
+
+        public static CommandAction FindActionById(string id)
+        {
+            if (CurrentConfig == null)
+                return null;
+            return CurrentConfig?.CommandActions.FirstOrDefault(p => p.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        }
 
         public static void SaveServerData()
         {

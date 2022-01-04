@@ -32,6 +32,8 @@ namespace MyRemote.AndroidClient
         {
             Routes.Add("serverslist", typeof(ServersListView));
             Routes.Add("keyb", typeof(KeyboardView));
+            Routes.Add("forms", typeof(MenuListView));
+
 
             foreach (var item in Routes)
             {

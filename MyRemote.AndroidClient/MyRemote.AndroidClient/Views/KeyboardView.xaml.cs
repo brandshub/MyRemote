@@ -31,6 +31,8 @@ namespace MyRemote.AndroidClient.Views
             KeyboardForm = keyboardForm;
             InitializeComponent();
             BuildForm();
+
+            Title = keyboardForm.Title;
         }
 
 
