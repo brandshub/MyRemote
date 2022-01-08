@@ -34,6 +34,8 @@ namespace MyRemote.Lib.Action
             if (request.ActionId == KeyboardAction.CODE)
                 return new KeyboardAction(request.Parameters);
 
+            if (request.ActionId == MouseAction.CODE)
+                return new MouseAction(request.Parameters);
 
             throw new Exception("Unknown action");
         }

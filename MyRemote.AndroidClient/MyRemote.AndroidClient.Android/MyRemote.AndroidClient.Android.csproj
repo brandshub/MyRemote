@@ -131,7 +131,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\add_24px.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MyRemote.Lib\MyRemote.Lib.csproj">
@@ -142,6 +142,12 @@
       <Project>{56AACCD7-4908-4AA3-862F-08B8AC44C9DF}</Project>
       <Name>MyRemote.AndroidClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\outline_add_24.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\outline_add_circle_24.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

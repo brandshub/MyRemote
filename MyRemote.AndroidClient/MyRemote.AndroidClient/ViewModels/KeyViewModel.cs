@@ -22,6 +22,8 @@ namespace MyRemote.AndroidClient.ViewModels
                 _color = Color.FromHex(_button.ColorHex);
 
             Keystroke = button.Key;
+
+            ActionId = button.RequestId;
         }
 
 
@@ -30,6 +32,8 @@ namespace MyRemote.AndroidClient.ViewModels
         public int Width => _button.Width;
 
         public Color Color => _color;
+
+        public string ActionId { get; private set; }
 
         public string Keystroke { get; private set; }
 

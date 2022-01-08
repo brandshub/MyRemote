@@ -26,9 +26,6 @@ namespace MyRemote.AndroidClient
         public MainPage()
         {
             InitializeComponent();
-            Business.Globals.LoadServerData();
-            if (Globals.SavedServers.Count == 0)
-                Navigation.PushAsync(new ServerView());
         }
 
         private async void btnClick_Clicked(object sender, EventArgs e)

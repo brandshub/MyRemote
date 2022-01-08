@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyRemote.AndroidClient.Business;
+using MyRemote.Lib.Server;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,11 +13,14 @@ namespace MyRemote.AndroidClient
             InitializeComponent();
 
             //MainPage = new NavigationPage(new MainPage());
+
+
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+           
         }
 
         protected override void OnSleep()

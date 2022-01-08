@@ -46,34 +46,53 @@ namespace MyRemote.AndroidClient.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        private void handleSendUrl()
+        private async void handleSendUrl()
         {
-            var view = new LinearLayout(this) { Orientation = Orientation.Vertical };
-            var url = Intent.GetStringExtra(Android.Content.Intent.ExtraText);
+            if (Globals.CurrentConfig == null)
+               await Globals.TryLoadDefaultData();
 
-            var urlTextView = new TextView(this) { Gravity = GravityFlags.Center };
-            urlTextView.Text = url;
+            if (Globals.CurrentConfig != null && Globals.CurrentConfig.Server != null)
+            {
+                var url = Intent.GetStringExtra(Android.Content.Intent.ExtraText);
 
-            view.AddView(urlTextView);
-            var description = new EditText(this) { Gravity = GravityFlags.Top };
-            view.AddView(description);
+                var view = new LinearLayout(this) { Orientation = Orientation.Vertical };
 
-            new AlertDialog.Builder(this)
-                     .SetTitle("Save a URL Link")
-                     .SetMessage("Type a description for your link")
-                     .SetView(view)
-                     .SetPositiveButton("Add", (dialog, whichButton) =>
-                     {
-                         var desc = description.Text;
-                         //Save off the url and description here
-                         //Remove dialog and navigate back to app or browser that shared                 
-                         //the link
+                var urlTextView = new TextView(this) { Gravity = GravityFlags.Center };
+                urlTextView.Text = url;
 
-                         Server.SendRequest(Globals.CurrentConfig, RunProcessAction.GenericRequest(url));
-                         FinishAndRemoveTask();
-                         FinishAffinity();
-                     })
-                     .Show();
+                view.AddView(urlTextView);
+                if (url.StartsWith("http://") || url.StartsWith("https://"))
+                {
+                    new AlertDialog.Builder(this)
+                             .SetTitle("Open Url")
+                             .SetView(view)
+                             .SetPositiveButton("Open", (dialog, whichButton) =>
+                             {
+                                 //Save off the url and description here
+                                 //Remove dialog and navigate back to app or browser that shared                 
+                                 //the link
+
+                                 Server.SendRequest(Globals.CurrentConfig, RunProcessAction.GenericRequest(url));
+                                 FinishAndRemoveTask();
+                                 FinishAffinity();
+                             })
+                             .SetNegativeButton("Cancel", (dialog, whichButton) =>
+                             {
+                                 FinishAndRemoveTask();
+                                 FinishAffinity();
+                             })
+                             .Show();
+                }
+                else
+                {
+                    new AlertDialog.Builder(this).SetTitle("Not a valid URL").SetView(view).SetNegativeButton("Cancel", (dialog, whichButton) =>
+                    {
+                        FinishAndRemoveTask();
+                        FinishAffinity();
+                    }).Show();
+                }
+            }
         }
+
     }
 }

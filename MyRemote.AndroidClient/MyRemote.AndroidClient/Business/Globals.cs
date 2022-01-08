@@ -1,11 +1,13 @@
 ﻿using MyRemote.Lib;
 using MyRemote.Lib.Action;
+using MyRemote.Lib.Server;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace MyRemote.AndroidClient.Business
@@ -34,6 +36,30 @@ namespace MyRemote.AndroidClient.Business
 
         }
 
+        public static async Task TryLoadDefaultData()
+        {
+
+            LoadServerData();
+            if (SavedServers.Count > 0)
+            {
+                var server = GetSelectedOrFirstServer();
+                if (server != null)
+                {
+                    try
+                    {
+                        CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
+                        CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
+                    }
+                    catch (Exception ex)
+                    {
+                        CurrentConfig = null;
+                    }
+
+                }
+
+            }
+
+        }
         public static void LoadServerData()
         {
             var path = System.IO.Path.Combine(FileSystem.AppDataDirectory, "servers.json");

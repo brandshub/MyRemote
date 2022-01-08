@@ -117,11 +117,18 @@
         ],
         [
           {
+            "t": "Scroll Up",
+            "RequestId": "SCROLLUP"
+          },
+          {
             "k": "F",
             "t": "Toggle Fullscreen",
-            "w": 8
+            "w": 6
+          },
+          {
+            "t": "Scroll Down",
+            "RequestId": "SCROLLDOWN"
           }
-
         ]
       ]
     }
@@ -142,7 +149,6 @@
       "Title": "Start Google",
       "ActionId": "GGGLE"
     }
-
   ],
   "CommandActions": [
     {
@@ -191,6 +197,27 @@
       "Parameters": {
         "input": "Alt+Tab"
       }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.MouseAction, MyRemote.Lib",
+
+      "Id": "SCROLLDOWN",
+      "Title": "SCROLLDOWN",
+      "Parameters": {
+        "COMMAND": "SCROLL",
+        "ARG1": "1"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.MouseAction, MyRemote.Lib",
+
+      "Id": "SCROLLUP",
+      "Title": "SCROLLUP",
+      "Parameters": {
+        "COMMAND": "SCROLL",
+        "ARG1": "-1"
+      }
     }
+     
   ]
 }

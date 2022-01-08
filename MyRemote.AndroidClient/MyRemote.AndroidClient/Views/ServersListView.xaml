@@ -4,8 +4,9 @@
              Title="Saved Servers"
              x:Class="MyRemote.AndroidClient.Views.ServersListView">
     <ContentPage.Content>
-        <ScrollView>
+        
             <StackLayout>
+            <ScrollView>
                 <ListView x:Name="MyListView"            
             ItemTapped="Handle_ItemTapped"                   
             ItemsSource="{Binding Items}"
@@ -37,6 +38,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            </ScrollView>
+            <AbsoluteLayout>
                 <ImageButton
             AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
             Padding="12"
@@ -44,11 +47,11 @@
             BackgroundColor="LightSkyBlue"
             CornerRadius="30"
             HeightRequest="20"        
-            Source="add_24px.xml"
-            WidthRequest="20" 
-            Clicked="ImageButton_Clicked"
-        />
-            </StackLayout>
-        </ScrollView>
+            Source="outline_add_24.xml"
+                        WidthRequest="20" 
+            Clicked="ImageButton_Clicked"        />
+            </AbsoluteLayout>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

@@ -91,11 +91,20 @@ namespace MyRemote.AndroidClient.Views
         {
             var btn = (Xamarin.Forms.Button)sender;
             var key = (KeyViewModel)btn.BindingContext;
-
-            await Task.Run(() =>
+            if (!string.IsNullOrEmpty(key.Keystroke))
             {
-                Server.SendRequest(Globals.CurrentConfig, KeyboardAction.KeyStrokeRequest(key.Keystroke));
-            });
+                await Server.SendRequestAsync(Globals.CurrentConfig, KeyboardAction.KeyStrokeRequest(key.Keystroke));
+            }
+            else
+            {
+                var action = Globals.FindActionById(key.ActionId);
+                await Server.SendRequestAsync(Globals.CurrentConfig, action.RequestThis());
+            }
+            //await Task.Run(() =>
+            //  {
+
+            //   Server.SendRequest(Globals.CurrentConfig, KeyboardAction.KeyStrokeRequest(key.Keystroke));
+            // });
         }
     }
 }
