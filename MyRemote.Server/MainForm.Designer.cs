@@ -29,8 +29,11 @@ namespace MyRemote.Server
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.hideIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -50,6 +53,14 @@ namespace MyRemote.Server
             this.rtbLog.Size = new System.Drawing.Size(648, 415);
             this.rtbLog.TabIndex = 1;
             this.rtbLog.Text = "";
+            this.rtbLog.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbLog_KeyDown);
+            // 
+            // hideIcon
+            // 
+            this.hideIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("hideIcon.Icon")));
+            this.hideIcon.Text = "MyRemoteserver";
+            this.hideIcon.Visible = true;
+            this.hideIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.hideIcon_MouseDoubleClick);
             // 
             // MainForm
             // 
@@ -59,8 +70,12 @@ namespace MyRemote.Server
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
+            this.ShowInTaskbar = false;
             this.Text = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.ResumeLayout(false);
 
         }
@@ -69,6 +84,7 @@ namespace MyRemote.Server
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox rtbLog;
+        private System.Windows.Forms.NotifyIcon hideIcon;
     }
 }
 

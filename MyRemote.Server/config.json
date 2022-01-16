@@ -113,6 +113,10 @@
           {
             "k": "Down",
             "t": "Vol-"
+          },
+          {
+            "k": "VOLUMEMUTE",
+            "t": "VolMute"
           }
         ],
         [
@@ -205,7 +209,7 @@
       "Title": "SCROLLDOWN",
       "Parameters": {
         "COMMAND": "SCROLL",
-        "ARG1": "1"
+        "ARG1": "-1"
       }
     },
     {
@@ -215,7 +219,7 @@
       "Title": "SCROLLUP",
       "Parameters": {
         "COMMAND": "SCROLL",
-        "ARG1": "-1"
+        "ARG1": "1"
       }
     }
      

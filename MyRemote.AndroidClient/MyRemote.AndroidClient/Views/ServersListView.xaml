@@ -29,7 +29,7 @@
                                       />
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
-                                    <StackLayout Orientation="Horizontal" BackgroundColor="{Binding MainColor}" Padding="15,0,20,0">
+                                    <StackLayout Orientation="Horizontal" BackgroundColor="{Binding ConnectedColor}" Padding="15,0,20,0">
                                         <Label  Text="{Binding Title}"  FontSize="22"  HorizontalOptions="Start"  VerticalOptions="Center" FontAttributes="{Binding SelectedFontAttr}"/>
                                         <Label  Text="{Binding Display}" FontSize="18" HorizontalOptions="EndAndExpand"  VerticalOptions="Center"   FontAttributes="{Binding SelectedFontAttr}"/>
                                     </StackLayout>

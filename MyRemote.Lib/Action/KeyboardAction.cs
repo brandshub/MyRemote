@@ -64,7 +64,7 @@ namespace MyRemote.Lib.Action
 
         public static void ParseInput(string input, out VirtualKeyCode[] modifiers, out VirtualKeyCode[] buttons)
         {
-            var inputUc = input.ToUpper().Replace("CTRL", "LCONTROLKEY").Replace("SHIFT", "LSHIFTKEY").Replace("ALT", "LMENU").Replace("WIN", "LWIN");
+            var inputUc = input.ToUpper().Replace("CTRL", "LCONTROLKEY").Replace("SHIFT", "LSHIFTKEY").Replace("ALT", "LMENU").Replace("WIN", "LWIN").Replace(",", "OEMCOMMA").Replace(".", "OEMPERIOD");
             var parts = inputUc.Split('+');
 
             var mods = new List<VirtualKeyCode>();

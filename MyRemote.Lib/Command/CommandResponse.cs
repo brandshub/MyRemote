@@ -18,6 +18,15 @@ namespace MyRemote.Lib.Command
             Payload = payload;
         }
 
+        public string this[string key]
+        {
+            get
+            {
+                return Payload[key];
+            }
+        }
+
+
         public CommandResponse() { Payload = new Dictionary<string, string>(); }
 
     }

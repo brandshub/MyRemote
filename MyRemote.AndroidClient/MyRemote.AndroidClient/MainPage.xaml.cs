@@ -18,6 +18,7 @@ using MyRemote.Lib.Action;
 using MyRemote.Lib.Model;
 using MyRemote.Lib.Menu.Forms;
 using MyRemote.AndroidClient.Interfaces;
+using Xamarin.Forms.Internals;
 
 namespace MyRemote.AndroidClient
 {
@@ -42,6 +43,10 @@ namespace MyRemote.AndroidClient
                 {
                     Globals.CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
                     Globals.CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
+
+                    Globals.SavedServers.Where(p => p != server).ForEach(d => d.IsConnected = false);
+                    server.IsConnected = true;
+
                     // Toast.MakeText(.MakeText(this, "Config loaded sucessfully", ToastLength.Short).Show();
                     //  await DisplayAlert("Success", "Config loaded!", "OK");
 
@@ -77,7 +82,7 @@ namespace MyRemote.AndroidClient
             var path = command[ListFilesAction.IP_PATH];
 
             var view = new FileListView(path, files);
-            view.EntryClicked += async (o) =>
+           /* view.EntryClicked += async (o) =>
             {
                 var fullPath = Path.Combine(path, o.FileName);
                 var request = RunProcessAction.GenericRequest(fullPath);
@@ -85,7 +90,7 @@ namespace MyRemote.AndroidClient
 
                 await Application.Current.MainPage.Navigation.PopAsync();
             };
-
+           */
             await Application.Current.MainPage.Navigation.PushAsync(view);
         }
 

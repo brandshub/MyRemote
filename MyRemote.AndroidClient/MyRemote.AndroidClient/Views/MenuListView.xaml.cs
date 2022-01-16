@@ -30,12 +30,18 @@ namespace MyRemote.AndroidClient.Views
             Title = "Forms";
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            Items = Globals.CurrentConfig.Forms;
-            MyListView.ItemsSource = Items;
+            if (Globals.CurrentConfig != null)
+            {
+                Items = Globals.CurrentConfig.Forms;
+                MyListView.ItemsSource = Items;
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ServersListView());
+            }
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

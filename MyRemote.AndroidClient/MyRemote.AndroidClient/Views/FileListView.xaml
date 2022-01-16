@@ -5,8 +5,12 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
-            <Label x:Name="PathZ"/>
-            <ListView x:Name="FilesList"
+            
+            <Label x:Name="PathZ" Text="{Binding FilePath}"/>
+                <ActivityIndicator x:Name="defaultActivityIndicator"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="Fill" />
+                <ListView x:Name="FilesList"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">

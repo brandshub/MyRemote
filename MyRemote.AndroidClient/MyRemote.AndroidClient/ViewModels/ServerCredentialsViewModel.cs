@@ -12,6 +12,8 @@ namespace MyRemote.AndroidClient.ViewModels
     public class ServerCredentialsViewModel : ViewModelBase
     {
         public ServerCredentials Server { get; set; }
+
+
         public ServerCredentialsViewModel() : this(new ServerCredentials()) { }
 
         public ServerCredentialsViewModel(ServerCredentials server)
@@ -74,6 +76,18 @@ namespace MyRemote.AndroidClient.ViewModels
                 return FontAttributes.None;
             }
         }
+
+
+        public Color ConnectedColor
+        {
+            get
+            {
+                if (Server.IsConnected)
+                    return Color.LightGreen;
+                return Color.White;
+            }
+        }
+
 
         public string Secret
         {

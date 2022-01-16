@@ -49,6 +49,7 @@ namespace MyRemote.AndroidClient.Business
                     {
                         CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
                         CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
+                        server.IsConnected = true;
                     }
                     catch (Exception ex)
                     {

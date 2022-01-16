@@ -11,6 +11,7 @@ namespace MyRemote.AndroidClient.ViewModels
         private Lib.Menu.Forms.Button _button;
         private Color _color;
 
+        private string displayText;
 
         public KeyViewModel(Lib.Menu.Forms.Button button)
         {
@@ -22,12 +23,12 @@ namespace MyRemote.AndroidClient.ViewModels
                 _color = Color.FromHex(_button.ColorHex);
 
             Keystroke = button.Key;
-
+            displayText = string.IsNullOrEmpty(_button.Text) ? _button.Key : _button.Text;
             ActionId = button.RequestId;
         }
 
 
-        public string Text => _button.Text;
+        public string Text => displayText;
 
         public int Width => _button.Width;
 
