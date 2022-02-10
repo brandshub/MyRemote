@@ -1,4 +1,5 @@
 ﻿using MyRemote.Lib;
+using MyRemote.Lib.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace MyRemote.Server
                 lock (syncRoot)
                 {
                     if (_current == null)
-                        _current = Config.LoadFromFile();
+                        //_current = Config.LoadFromFile();
+                        _current = ConfigLoader.LoadConfig();
                     return _current;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using MyRemote.Lib.Action;
 using MyRemote.Lib.Command;
+using MyRemote.Lib.Configuration;
 using Newtonsoft.Json;
 using NLog;
 using System;

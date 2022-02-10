@@ -1,6 +1,7 @@
 ﻿using MyRemote.Lib;
 using MyRemote.Lib.Action;
 using MyRemote.Lib.Command;
+using MyRemote.Lib.Configuration;
 using MyRemote.Lib.Server;
 using System;
 using System.Collections.Generic;

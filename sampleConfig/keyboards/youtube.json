@@ -1,0 +1,86 @@
+{
+	"Enabled":"True",
+	"AssociatedProcesses": ["chrome.exe"],
+	"Item": 
+	{
+      "$type": "MyRemote.Lib.Menu.Forms.KeyboardForm, MyRemote.Lib",
+
+      "Id": "ytK",
+      "Title": "YouTube Keyboard",
+      "Buttons": [
+        [
+          {
+            "k": "Shift+P",
+            "t": "Back"
+          },
+          {
+            "k": "k",
+            "t": "Play",
+            "w": 3
+          },
+          {
+            "k": "Shift+N",
+            "t": "Next"
+          },
+          {
+            "k": "M",
+            "t": "Mute"
+          },
+          {
+            "k": "Shift+,",
+            "t": "Speed-"
+          },
+          {
+            "k": "Shift+.",
+            "t": "Speed+"
+          }
+        ],
+        [
+          {
+            "k": "J",
+            "t": "<<"
+          },
+
+          {
+            "k": "Left",
+            "t": "<"
+          },
+          {
+            "k": "Right",
+            "t": ">"
+          },
+          {
+            "k": "L",
+            "t": ">>"
+          },
+          {
+            "k": "Up",
+            "t": "Vol+"
+          },
+          {
+            "k": "Down",
+            "t": "Vol-"
+          },
+          {
+            "k": "VOLUMEMUTE",
+            "t": "VolMute"
+          }
+        ],
+        [
+          {
+            "t": "Scroll Up",
+            "RequestId": "SCROLLUP"
+          },
+          {
+            "k": "F",
+            "t": "Toggle Fullscreen",
+            "w": 6
+          },
+          {
+            "t": "Scroll Down",
+            "RequestId": "SCROLLDOWN"
+          }
+        ]
+      ]
+    }	
+}

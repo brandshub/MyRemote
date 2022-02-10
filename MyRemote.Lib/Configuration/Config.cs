@@ -12,7 +12,7 @@ using MyRemote.Lib.Menu;
 using MyRemote.Lib.Menu.Forms;
 using Newtonsoft.Json;
 
-namespace MyRemote.Lib
+namespace MyRemote.Lib.Configuration
 {
     public class Config
     {

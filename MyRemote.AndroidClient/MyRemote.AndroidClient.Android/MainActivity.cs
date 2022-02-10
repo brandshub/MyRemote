@@ -10,11 +10,12 @@ using Xamarin.Forms;
 using MyRemote.Lib.Server;
 using MyRemote.AndroidClient.Business;
 using MyRemote.Lib.Action;
+using Android.Provider;
 
 namespace MyRemote.AndroidClient.Droid
 {
     [Activity(Label = "MyRemote.AndroidClient", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
-    [IntentFilter(new[] { Android.Content.Intent.ActionSend }, Categories = new[] { Android.Content.Intent.CategoryDefault }, DataMimeType = "text/plain")]
+    [IntentFilter(new[] { Android.Content.Intent.ActionSend }, Categories = new[] { Android.Content.Intent.CategoryDefault }, DataMimeTypes = new[] { "text/plain", "image/*" })]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,13 +33,21 @@ namespace MyRemote.AndroidClient.Droid
 
 
             if (Intent.Action.Equals(Android.Content.Intent.ActionSend) &&
-                Intent.Type != null &&
-                Intent.Type.Equals("text/plain")
-                )
+                Intent.Type != null)
             {
-                handleSendUrl();
+                if (Intent.Type.Equals("text/plain"))
+
+                {
+                    handleSendUrl();
+                }
+                else if (Intent.Type.StartsWith("image") && Intent.Extras.ContainsKey(Android.Content.Intent.ExtraStream))
+                {
+                    var fileUrl = GetFilePath((Android.Net.Uri)Intent.Extras.GetParcelable(Android.Content.Intent.ExtraStream));
+
+                }
             }
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -49,7 +58,7 @@ namespace MyRemote.AndroidClient.Droid
         private async void handleSendUrl()
         {
             if (Globals.CurrentConfig == null)
-               await Globals.TryLoadDefaultData();
+                await Globals.TryLoadDefaultData();
 
             if (Globals.CurrentConfig != null && Globals.CurrentConfig.Server != null)
             {
@@ -92,6 +101,16 @@ namespace MyRemote.AndroidClient.Droid
                     }).Show();
                 }
             }
+        }
+
+
+        private string GetFilePath(Android.Net.Uri uri)
+        {
+            string[] proj = { MediaStore.Images.ImageColumns.Data };
+            var cursor = ContentResolver.Query(uri, proj, null, null, null);
+            var colIndex = cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
+            cursor.MoveToFirst();
+            return cursor.GetString(colIndex);
         }
 
     }

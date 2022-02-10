@@ -71,8 +71,10 @@
     <Compile Include="Action\SaveToDiskAction.cs" />
     <Compile Include="Action\SetVolumeAction.cs" />
     <Compile Include="Action\WaitAction.cs" />
+    <Compile Include="Configuration\ConfigLoader.cs" />
+    <Compile Include="Configuration\ConfigModel.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="Menu\Forms\Button.cs" />
     <Compile Include="Menu\Forms\KeyboardForm.cs" />
     <Compile Include="Menu\Menu.cs" />

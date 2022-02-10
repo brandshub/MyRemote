@@ -1,4 +1,5 @@
 ﻿using MyRemote.Lib.Command;
+using MyRemote.Lib.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

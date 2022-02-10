@@ -1,4 +1,5 @@
 ﻿using MyRemote.Lib;
+using MyRemote.Lib.Configuration;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace MyRemote.Server
         private static TcpListener listener;
         private void button1_Click(object sender, EventArgs e)
         {
+
             var cfg = Common.CurrentConfig;
 
             if (!IPAddress.TryParse(cfg.Server.IpAddress, out IPAddress ipAddress))
@@ -76,8 +78,6 @@ namespace MyRemote.Server
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             if (logger == null)
                 logger = LogManager.GetCurrentClassLogger();
 

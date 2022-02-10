@@ -1,0 +1,39 @@
+{
+	"Enabled":"True",
+	"Item": 
+	{
+      "$type": "MyRemote.Lib.Menu.Forms.KeyboardForm, MyRemote.Lib",
+
+      "Id": "testK",
+      "Title": "Test Keyboard",
+      "Buttons": [
+        [
+          {
+            "k": "Win+D",
+            "t": "Minimize Windows",
+            "w": 5
+
+          },
+          {
+            "k": "Win+3",
+            "t": "Source Tree",
+            "w": 4
+          }
+        ],
+        [
+          {
+            "k": "Win+E",
+            "t": "Explorer",
+            "w": 5
+
+          },
+          {
+            "k": "Win+3",
+            "t": "Chrome",
+            "w": 3
+
+          }
+        ]
+      ]
+    }
+}

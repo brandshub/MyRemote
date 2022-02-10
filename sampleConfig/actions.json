@@ -1,0 +1,70 @@
+[
+    {
+      "$type": "MyRemote.Lib.Action.ListFilesAction, MyRemote.Lib",
+
+      "Id": "LIST_TORRENTS",
+      "Title": "List Torrents",
+      "Parameters": {
+        "path": "D:\\Torrents"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "GGGLE",
+      "Title": "OpenGoogle",
+      "Parameters": {
+        "command": "https://google.com.ua"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "sd_90",
+      "Title": "Shutdown90",
+      "Parameters": {
+        "command": "c:\\windows\\system32\\shutdown.exe",
+        "args": "/s /t 90"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.RunProcessAction, MyRemote.Lib",
+
+      "Id": "sda",
+      "Title": "ShutdownAbort",
+      "Parameters": {
+        "command": "c:\\windows\\system32\\shutdown.exe",
+        "args": "/a"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.KeyboardAction, MyRemote.Lib",
+
+      "Id": "ALTAB",
+      "Title": "Alt+Tab",
+      "Parameters": {
+        "input": "Alt+Tab"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.MouseAction, MyRemote.Lib",
+
+      "Id": "SCROLLDOWN",
+      "Title": "SCROLLDOWN",
+      "Parameters": {
+        "COMMAND": "SCROLL",
+        "ARG1": "-1"
+      }
+    },
+    {
+      "$type": "MyRemote.Lib.Action.MouseAction, MyRemote.Lib",
+
+      "Id": "SCROLLUP",
+      "Title": "SCROLLUP",
+      "Parameters": {
+        "COMMAND": "SCROLL",
+        "ARG1": "1"
+      }
+    }
+     
+]

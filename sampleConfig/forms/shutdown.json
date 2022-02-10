@@ -1,0 +1,18 @@
+{
+	"Enabled":"True",	
+	"Item":
+	{
+      "Id": "Shutdown",
+      "Title": "Shutdown",
+      "Controls": [
+        {
+          "RequestId": "sd_90",
+          "t": "Power Off 90s"
+        },
+        {
+          "RequestId": "sda",
+          "t": "Abort Power Off"
+        }
+      ]
+	}
+}

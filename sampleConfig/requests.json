@@ -1,0 +1,17 @@
+[
+    {
+      "Id": "lf_Torrents",
+      "Title": "List Torrents",
+      "ActionId": "LIST_TORRENTS"
+    },
+    {
+      "Id": "kb_alttab",
+      "Title": "Alt Tab",
+      "ActionId": "ALTAB"
+    },
+    {
+      "Id": "p_google",
+      "Title": "Start Google",
+      "ActionId": "GGGLE"
+    }
+]
