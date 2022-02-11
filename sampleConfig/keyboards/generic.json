@@ -32,7 +32,11 @@
             "t": "Chrome",
             "w": 3
 
-          }
+          },
+		  {
+			  "t":"ListProcesses",
+			  "RequestId": "LIST_WINDOWS"
+		  }
         ]
       ]
     }

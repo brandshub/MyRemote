@@ -16,9 +16,9 @@ namespace MyRemote.Lib.Action
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            if (cfg is null)            
+            if (cfg is null)
                 throw new ArgumentNullException(nameof(cfg));
-            
+
 
             var action = cfg.CommandActions.FirstOrDefault(d => d.Id.Equals(request.ActionId));
             if (action != null)
@@ -38,7 +38,14 @@ namespace MyRemote.Lib.Action
             if (request.ActionId == MouseAction.CODE)
                 return new MouseAction(request.Parameters);
 
+            if (request.ActionId == ListActiveWindowsAction.CODE)
+                return new ListActiveWindowsAction(null);
+
+            if (request.ActionId == FocusWindowAction.CODE)
+                return new FocusWindowAction(request.Parameters);
+
             throw new Exception("Unknown action");
         }
+
     }
 }

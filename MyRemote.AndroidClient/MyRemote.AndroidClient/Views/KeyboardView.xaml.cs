@@ -1,6 +1,7 @@
 ﻿using MyRemote.AndroidClient.Business;
 using MyRemote.AndroidClient.ViewModels;
 using MyRemote.Lib.Action;
+using MyRemote.Lib.Command;
 using MyRemote.Lib.Menu.Forms;
 using MyRemote.Lib.Server;
 using System;
@@ -98,7 +99,22 @@ namespace MyRemote.AndroidClient.Views
             else
             {
                 var action = Globals.FindActionById(key.ActionId);
-                await Server.SendRequestAsync(Globals.CurrentConfig, action.RequestThis());
+                CommandRequest request = null;
+
+                // generic command
+                if (action == null)
+                {
+                    request = new CommandRequest { ActionId = key.ActionId };
+                }
+                else
+                {
+                    request = action.RequestThis();
+                }
+
+
+                var resp = await Server.SendRequestAsync(Globals.CurrentConfig, request);
+                await ContextNavigator.TryPerformContextedNavigation(request, resp);
+
             }
             //await Task.Run(() =>
             //  {

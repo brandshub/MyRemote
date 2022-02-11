@@ -33,6 +33,9 @@
     <Compile Update="Views\ServersListView.xaml.cs">
       <DependentUpon>ServersListView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\WindowsListView.xaml.cs">
+      <DependentUpon>WindowsListView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +64,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ServerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WindowsListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
