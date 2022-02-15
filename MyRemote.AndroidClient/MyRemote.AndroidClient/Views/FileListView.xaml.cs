@@ -22,7 +22,13 @@ namespace MyRemote.AndroidClient.Views
 
         public event Action<FileEntry> EntryClicked;
 
-        public string FilePath { get; private set; }
+        private string _filePath;
+
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { _filePath = value; OnPropertyChanged(); }
+        }
 
         public FileListView(string path, FileEntry[] files)
         {

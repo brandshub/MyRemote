@@ -75,5 +75,25 @@ namespace MyRemote.AndroidClient.Views
 
             ((ListView)sender).SelectedItem = null;
         }
+
+        private async void ConnectButton_Clicked(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            var server = (ServerCredentialsViewModel)btn.BindingContext;
+
+            try
+            {
+                await Globals.ConnectTo(server.Server);
+            }
+            catch (OperationCanceledException ex)
+            {
+                await DisplayAlert("Failure", ex.CancellationToken == null ? "TCP connection failed" : "TCP connection timed out", "OK");
+            }
+            catch
+            {
+                await DisplayAlert("Failure", "Unspecified error occured", "OK");
+            }
+        }
+
     }
 }

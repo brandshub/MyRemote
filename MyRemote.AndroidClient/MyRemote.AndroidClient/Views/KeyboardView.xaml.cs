@@ -92,12 +92,15 @@ namespace MyRemote.AndroidClient.Views
         {
             var btn = (Xamarin.Forms.Button)sender;
             var key = (KeyViewModel)btn.BindingContext;
+
             if (!string.IsNullOrEmpty(key.Keystroke))
             {
                 await Server.SendRequestAsync(Globals.CurrentConfig, KeyboardAction.KeyStrokeRequest(key.Keystroke));
             }
             else
             {
+
+
                 var action = Globals.FindActionById(key.ActionId);
                 CommandRequest request = null;
 
@@ -113,7 +116,7 @@ namespace MyRemote.AndroidClient.Views
 
 
                 var resp = await Server.SendRequestAsync(Globals.CurrentConfig, request);
-                await ContextNavigator.TryPerformContextedNavigation(request, resp);
+                await ContextNavigator.TryPerformContextedNavigation(action, request, resp);
 
             }
             //await Task.Run(() =>

@@ -11,7 +11,7 @@ namespace MyRemote.Lib.Command
     {
         public int StatusCode { get; set; } = 0;
 
-        public Dictionary<string, string> Payload { get; set; }
+        public Dictionary<string, string> Payload { get; set; }        
 
         public CommandResponse(Dictionary<string, string> payload)
         {

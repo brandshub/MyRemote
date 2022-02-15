@@ -1,4 +1,5 @@
-﻿using MyRemote.Lib;
+﻿using MyRemote.AndroidClient.Interfaces;
+using MyRemote.Lib;
 using MyRemote.Lib.Action;
 using MyRemote.Lib.Configuration;
 using MyRemote.Lib.Server;
@@ -10,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace MyRemote.AndroidClient.Business
 {
@@ -89,6 +92,18 @@ namespace MyRemote.AndroidClient.Business
                 return selected;
             }
             return null;
+        }
+
+
+        public static async Task ConnectTo(ServerCredentials server)
+        {
+            CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
+            CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
+
+            SavedServers.Where(p => p != server).ForEach(d => d.IsConnected = false);
+            server.IsConnected = true;
+
+            DependencyService.Get<IMessage>().LongAlert("Config loaded sucessfully");
         }
 
 

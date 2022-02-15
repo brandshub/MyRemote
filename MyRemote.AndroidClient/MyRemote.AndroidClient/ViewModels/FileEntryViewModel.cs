@@ -25,5 +25,6 @@ namespace MyRemote.AndroidClient.ViewModels
         public string Name => File.FileName;
         public string DateTimeChanged => File.DatetTimeChanged.ToString("yyyy-MM-dd HH:mm");
 
+        public string Icon => File.IsDirectory ? "outline_folder_24.xml" : "outline_insert_drive_file_24.xml";
     }
 }

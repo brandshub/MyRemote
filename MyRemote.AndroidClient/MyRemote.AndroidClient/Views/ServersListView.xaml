@@ -29,9 +29,10 @@
                                       />
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
-                                    <StackLayout Orientation="Horizontal" BackgroundColor="{Binding ConnectedColor}" Padding="15,0,20,0">
+                                    <StackLayout Orientation="Horizontal" Padding="15,0,20,0">
                                         <Label  Text="{Binding Title}"  FontSize="22"  HorizontalOptions="Start"  VerticalOptions="Center" FontAttributes="{Binding SelectedFontAttr}"/>
-                                        <Label  Text="{Binding Display}" FontSize="18" HorizontalOptions="EndAndExpand"  VerticalOptions="Center"   FontAttributes="{Binding SelectedFontAttr}"/>
+                                        <Label  Text="{Binding Display}" FontSize="14" HorizontalOptions="EndAndExpand"   VerticalOptions="Center"   FontAttributes="{Binding SelectedFontAttr}"/>
+                                        <Button Text="{Binding ConnectionStatus}"  FontSize="12" FontAttributes="Bold" HorizontalOptions="EndAndExpand" WidthRequest="125"  Margin="0,5,0,5" VerticalOptions="Center" BorderWidth="1"  TextColor="White" BackgroundColor="{Binding ConnectionButtonColor}" Clicked="ConnectButton_Clicked" IsEnabled="{Binding CanConnect}"/>
                                     </StackLayout>
                                 </SwipeView>
                             </ViewCell>

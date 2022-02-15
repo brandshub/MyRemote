@@ -38,19 +38,9 @@ namespace MyRemote.AndroidClient
             }
             else
             {
-
                 try
                 {
-                    Globals.CurrentConfig = await Server.GetConfigAsync(server.IpAddress, server.Port, server.Secret);
-                    Globals.CurrentConfig.Server = new Server { IpAddress = server.IpAddress, Port = server.Port, Secret = server.Secret };
-
-                    Globals.SavedServers.Where(p => p != server).ForEach(d => d.IsConnected = false);
-                    server.IsConnected = true;
-
-                    // Toast.MakeText(.MakeText(this, "Config loaded sucessfully", ToastLength.Short).Show();
-                    //  await DisplayAlert("Success", "Config loaded!", "OK");
-
-                    DependencyService.Get<IMessage>().LongAlert("Config loaded sucessfully");
+                    await Globals.ConnectTo(server);
                 }
                 catch (OperationCanceledException ex)
                 {

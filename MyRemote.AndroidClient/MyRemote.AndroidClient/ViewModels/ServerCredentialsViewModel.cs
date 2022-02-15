@@ -37,7 +37,7 @@ namespace MyRemote.AndroidClient.ViewModels
         {
             get { return Server.IpAddress; }
             set
-            {                
+            {
                 if (Server.IpAddress != value)
                 {
                     Server.IpAddress = value;
@@ -59,35 +59,13 @@ namespace MyRemote.AndroidClient.ViewModels
             }
         }
 
-        public string Display
-        {
-            get
-            {
-                return $"{IpAddress}:{Port}";
-            }
-        }
-
-        public FontAttributes SelectedFontAttr
-        {
-            get
-            {
-                if (Selected)
-                    return FontAttributes.Bold;
-                return FontAttributes.None;
-            }
-        }
-
-
-        public Color ConnectedColor
-        {
-            get
-            {
-                if (Server.IsConnected)
-                    return Color.LightGreen;
-                return Color.White;
-            }
-        }
-
+        public string Display => $"{IpAddress}:{Port}";
+        public FontAttributes SelectedFontAttr => Selected ? FontAttributes.Bold : FontAttributes.None;
+        public Color ConnectedColor => Server.IsConnected ? Color.LightGreen : Color.White;
+        public string ConnectionStatus => Server.IsConnected ? "Connected" : "Connect";
+        public Color ConnectionButtonColor => Server.IsConnected ? Color.LightGreen : Color.Blue;        
+        public bool CanConnect => !Server.IsConnected;
+        
 
         public string Secret
         {
@@ -151,7 +129,7 @@ namespace MyRemote.AndroidClient.ViewModels
                 Globals.SavedServers.Add(Server);
             }
             Globals.SaveServerData();
-            await Shell.Current.GoToAsync("serverslist");            
+            await Shell.Current.GoToAsync("serverslist");
         }
 
         private async void OnEdit()
@@ -180,7 +158,10 @@ namespace MyRemote.AndroidClient.ViewModels
             }
         }
 
+        public void Connect()
+        {
 
+        }
 
 
     }

@@ -46,6 +46,8 @@ namespace MyRemote.Lib.Action
                 DatetTimeChanged = p.LastWriteTime
             }));
 
+            entries.Sort((f1, f2) => { if (f1.IsDirectory == f2.IsDirectory) return string.Compare(f1.FileName, f2.FileName, true); if (f1.IsDirectory) return -1; return 1; });
+
             data[OP_FILELIST] = JsonConvert.SerializeObject(entries);
             data[IP_PATH] = di.FullName;
 

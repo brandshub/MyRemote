@@ -8,10 +8,10 @@
         <Tab Title="Main">
             <ShellContent ContentTemplate="{DataTemplate z:MainPage}" />
         </Tab>
-        <Tab Title="Menus">
+        <Tab Title="Menus" Icon="baseline_list_24.xml">
             <ShellContent ContentTemplate="{DataTemplate views:MenuListView}" />
         </Tab>
-        <Tab Title="Servers">
+        <Tab Title="Servers" Icon="outline_devices_24.xml">
             <ShellContent ContentTemplate="{DataTemplate views:ServersListView}" />
         </Tab>        
     </TabBar>
